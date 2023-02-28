@@ -1,6 +1,6 @@
-import moongose from "mongoose";
+import mongoose from "mongoose";
 
-const ProductSchema = new moongose.Schema({
+const ProductSchema = new mongoose.Schema({
     name: String,
     price: Number,
     description: String,
@@ -11,6 +11,6 @@ const ProductSchema = new moongose.Schema({
 { timestamps: true }
 );
 
-const Product = moongose.model("Product", ProductSchema);
+const Product = mongoose.model("Product", ProductSchema);
 
 export default Product;

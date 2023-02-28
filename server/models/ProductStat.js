@@ -1,6 +1,6 @@
-import moongose from "mongoose";
+import mongoose from "mongoose";
 
-const ProductStatSchema = new moongose.Schema({
+const ProductStatSchema = new mongoose.Schema({
     productId: String,
     yearlySalesTotal: Number,
     yearlyTotalSoldUnits: Number,
@@ -21,6 +21,6 @@ const ProductStatSchema = new moongose.Schema({
 { timestamps: true }
 );
 
-const ProductStat = moongose.model("ProductStat", ProductStatSchema);
+const ProductStat = mongoose.model("ProductStat", ProductStatSchema);
 
 export default ProductStat;

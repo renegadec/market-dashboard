@@ -17314,7 +17314,7 @@ export const dataUser = [
     password: "omMDCh",
     city: "Nurabelen",
     state: null,
-    country: "ID",
+    country: "ZW",
     occupation: "Computer Systems Analyst I",
     phoneNumber: "8346315874",
     transactions: [
@@ -17332,7 +17332,7 @@ export const dataUser = [
     password: "XRYBnKAfm",
     city: "Zhanghekou",
     state: null,
-    country: "CN",
+    country: "ZW",
     occupation: "Food Chemist",
     phoneNumber: "9981906117",
     transactions: [
@@ -17350,7 +17350,7 @@ export const dataUser = [
     password: "WwDjOlH",
     city: "Muang Sam Sip",
     state: null,
-    country: "TH",
+    country: "ZW",
     occupation: "Staff Scientist",
     phoneNumber: "3868813669",
     transactions: [
@@ -17370,7 +17370,7 @@ export const dataUser = [
     password: "vojl4bBDJ",
     city: "San Luis",
     state: null,
-    country: "AR",
+    country: "ZW",
     occupation: "Associate Professor",
     phoneNumber: "8535391908",
     transactions: [
@@ -18041,13 +18041,13 @@ export const dataUser = [
   },
   {
     _id: "63701cc1f03239b7f700000e",
-    name: "Shelly",
-    email: "swelbeck12@ycombinator.com",
+    name: "Confidence",
+    email: "cn@tswaanda.com",
     password: "RSjzmAjnq",
     city: "Sangoleng",
     state: null,
-    country: "ID",
-    occupation: "Pharmacist",
+    country: "ZW",
+    occupation: "Admin",
     phoneNumber: "7036619983",
     transactions: [
       "63701d74f03239d81e000027",

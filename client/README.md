@@ -1,2 +1,2 @@
 # market-dashboard
-Dashboard for tswaanda market place
+Dashboard for tswaanda marketplace

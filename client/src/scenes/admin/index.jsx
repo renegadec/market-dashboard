@@ -58,7 +58,7 @@ const Admin = () => {
                 mt="40px" 
                 height="75vh"
                 sx={{
-                    "& .MuoDataGrid-root": {
+                    "& .MuiDataGrid-root": {
                         border: "none"
                     },
                     "& .MuiDataGrid-cell": {

@@ -52,15 +52,15 @@ const Daily = () => {
         <Header title="DAILY SALES" subtitle="Chart of daily sales" />
         <Box height="75vh">
             <Box display="flex" justifyContent="flex-end">
-            <Box>
-                <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                selectsStart
-                startDate={startDate}
-                endDate={endDate}
-                />
-            </Box>
+                <Box>
+                    <DatePicker
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    selectsStart
+                    startDate={startDate}
+                    endDate={endDate}
+                    />
+                </Box>
             <Box>
                 <DatePicker
                 selected={endDate}

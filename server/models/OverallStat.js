@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const OverallStatSchema = new mongoose.Schema(
     {
         totalCustomers: Number,
-        yearlySaleTotal: Number,
+        yearlySalesTotal: Number,
         yearlyTotalSoldUnits: Number,
         year: Number,
         monthlyData: [
@@ -20,7 +20,7 @@ const OverallStatSchema = new mongoose.Schema(
                 totalUnits: Number
             }
         ],
-        saleByCategory: {
+        salesByCategory: {
             type: Map,
             of: Number,
         },

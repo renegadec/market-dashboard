@@ -60,7 +60,7 @@ const Transactions = () => {
             <Box 
                 height="80vh"
                 sx={{
-                    "& .MuoDataGrid-root": {
+                    "& .MuiDataGrid-root": {
                         border: "none"
                     },
                     "& .MuiDataGrid-cell": {

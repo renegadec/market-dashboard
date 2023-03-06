@@ -37,7 +37,7 @@ const Product =({
         >
             <CardContent>
                 <Typography 
-                    sx={{ fontSize: 14 }} color={theme.palette.secondary[700]} gutterBottom
+                    sx={{ fontSize: 14 }} color={theme.palette.secondary[400]} gutterBottom
                 >
                     {category}
                 </Typography>

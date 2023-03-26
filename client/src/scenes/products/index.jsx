@@ -14,6 +14,8 @@ import {
 import Header from "../../components/Header";
 import { useGetProductsQuery } from "../../state/api";
 
+import UpLoadProduct from "../../scenes/upload";
+
 const Product =({
     _id,
     name,
@@ -87,48 +89,61 @@ const Products = () => {
     const { data, isLoading } = useGetProductsQuery();
     const isNonMobile = useMediaQuery("(min-width: 1000px)");
 
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleUpLoadButton = () => {
+        setIsOpen(true);
+    };
+
+    const handleUpLoadPopClose = () => {
+        setIsOpen(false);
+    };
+
     return (
         <Box m="1.5rem 2.5rem">
-        <Header title="PRODUCTS" subtitle="List of products." />
-        {data || !isLoading ? (
-            <Box
-                mt="20px"
-                display="grid"
-                gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-                justifyContent="space-between"
-                rowGap="20px"
-                columnGap="1.33%"
-                sx={{
-                    "& > div": { gridColumn: isNonMobile ? undefined : "span 4"}
-                }}
-            >
-                {data.map(({
-                    _id,
-                    name,
-                    description,
-                    price,
-                    rating,
-                    category,
-                    supply,
-                    stat,
-                }) => (
-                    <Product 
-                        key={_id}
-                        _id={_id}
-                        name={name}
-                        description={description}
-                        price={price}
-                        rating={rating}
-                        category={category}
-                        supply={supply}
-                        stat={stat}
-                    />
-                ))}
-            </Box>
-        ) : (
-            <>Loading...</>
-        )}
-    </Box>
+            <Header title="PRODUCTS" subtitle="List of products." />
+            <Button variant="contained" onClick={handleUpLoadButton}>Add Product</Button>
+            {isOpen && <UpLoadProduct isOpen={isOpen}  onClose={handleUpLoadPopClose} />}
+
+            {data || !isLoading ? (
+                <Box
+                    mt="20px"
+                    display="grid"
+                    gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+                    justifyContent="space-between"
+                    rowGap="20px"
+                    columnGap="1.33%"
+                    sx={{
+                        "& > div": { gridColumn: isNonMobile ? undefined : "span 4"}
+                    }}
+                >
+                    {data.map(({
+                        _id,
+                        name,
+                        description,
+                        price,
+                        rating,
+                        category,
+                        supply,
+                        stat,
+                    }) => (
+                        <Product 
+                            key={_id}
+                            _id={_id}
+                            name={name}
+                            description={description}
+                            price={price}
+                            rating={rating}
+                            category={category}
+                            supply={supply}
+                            stat={stat}
+                        />
+                    ))}
+                </Box>
+            ) : (
+                <>Loading...</>
+            )}
+        </Box>
 );
 };
 

@@ -1,126 +1,133 @@
-import React, { useContext } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, { useContext, useState, useCallback } from "react";
+import { UserContext } from "../../UserContext";
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import Divider from '@mui/material/Divider';
 
-import { UserContext } from '../../UserContext';
+import {
+    Alert,
+    Box,
+    Button,
+    Link,
+    Stack,
+    Tab,
+    Tabs,
+    Typography,
+} from "@mui/material";
 
 import { useAuth } from "../../hooks";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="https://tswaanda.com/">
-            Tswaanda Africa
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-        </Typography>
-    );
-}
-
-const theme = createTheme();
-
-export default function Login() {
+const Login = () => {
     const navigate = useNavigate();
-
     const { session, setSession } = useContext(UserContext);
     const { login, logout } = useAuth(session, setSession);
+    const [method, setMethod] = useState('auth');
+
+
+    const handleMethodChange = useCallback(
+        (event, value) => {
+        setMethod(value);
+        },
+        []
+    );
 
     return (
-        <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ height: '100vh' }}>
-                <CssBaseline />
-                <Grid
-                    item
-                    xs={false}
-                    sm={4}
-                    md={7}
-                    sx={{
-                        backgroundImage: 'url(https://source.unsplash.com/random)',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundColor: (t) =>
-                        t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
-                />
-                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-                    <Box
-                        sx={{
-                        my: 8,
-                        mx: 4,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        }}
+        <div>
+        <Box
+            sx={{
+            backgroundColor: "",
+            flex: "1 1 auto",
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "center",
+            }}
+        >
+            <Box
+            sx={{
+                maxWidth: 550,
+                px: 3,
+                py: "100px",
+                width: "100%",
+            }}
+            >
+            <div>
+            <Stack 
+                direction="row" 
+                spacing={2} justifyContent="center" 
+                alignItems="center"
+                divider={<Divider orientation="vertical" flexItem />}
+                sx={{ marginBottom: '50px' }}
+            > 
+                <AdminPanelSettingsIcon sx={{ fontSize: 60, color: '#dda15f' }} />
+                <Typography
+                    variant="h1"
+                    style={{ fontSize: 50, fontWeight: 'bold', 
+                    textDecoration: 'underline', textDecorationColor: '#dda15f'
+                }}
+                >
+                    Tswaanda
+                </Typography>
+            </Stack>
+                <Stack spacing={1} sx={{ mb: 3 }}>
+                <Typography variant="h4" sx={{ fontSize: 30, fontWeight: "bold"}}>Login</Typography>
+                <Typography color="text.primary" variant="body2">
+                    Admin access only. Not admin? {' '}
+                    <Link
+                    href="/"
+                    underline="hover"
+                    variant="subtitle2"
                     >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                            <LockOutlinedIcon />
-                        </Avatar>
-                        <Typography component="h1" variant="h5">
-                            Admin Access.
-                        </Typography>
-                        <Box component="form" noValidate sx={{ mt: 1 }}>
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                                onClick={() => login(
-                                                () => navigate("/dashboard"),
-                                                () => console.log('Error')
-                                            )}
-                            >
-                                Sign In
-                            </Button>
-                            <Copyright sx={{ mt: 5 }} />
-                        </Box>
-                    </Box>
-                </Grid>
-            </Grid>
-        </ThemeProvider>
+                    Marketplace
+                    </Link>
+                </Typography>
+                </Stack>
+                <Tabs 
+                    onChange={handleMethodChange} 
+                    sx={{ mb: 3 }} 
+                    value={method}
+                    textColor="secondary"
+                    indicatorColor="secondary"
+                >
+                <Tab label="Tswaanda Auth" value="auth" />
+                <Tab label="Email" value="email" />
+                </Tabs>
+                {method === "auth" && (
+                <form noValidate>
+                    <Button
+                    fullWidth
+                    size="large"
+                    sx={{ mt: 3 }}
+                    onClick={() => login(
+                        () => navigate("/dashboard"),
+                        () => console.log('Error')
+                    )}
+                    variant="contained"
+                    >
+                    Sign in
+                    </Button>
+                    
+                    <Alert color="primary" severity="info" sx={{ mt: 3 }}>
+                    <div>
+                        Tswaanda uses <b>dfinity auth</b> for authentication{" "}
+                    </div>
+                    </Alert>
+                </form>
+                )}
+                {method === "email" && (
+                <div>
+                    <Typography sx={{ mb: 1 }} variant="h6">
+                    Not available at the moment
+                    </Typography>
+                    <Typography color="text.secondary">
+                    Just backup, just incase Tswaanda Auth is not working.
+                    </Typography>
+                </div>
+                )}
+            </div>
+            </Box>
+        </Box>
+        </div>
     );
-}
+};
 
-
-
-
-
-
-
-// import React, { useContext } from 'react';
-// import { UserContext } from '../../UserContext';
-
-// import { useAuth } from "../../hooks";
-// import { useNavigate } from "react-router-dom"
-
-
-// const Login = () => {
-
-//     const navigate = useNavigate();
-
-//     const { session, setSession } = useContext(UserContext)
-
-//     const { login, logout } = useAuth(session, setSession);
-//   return (
-//     <div>
-//         <h1>Login</h1>
-//         <button onClick={() => login(
-//                                         () => navigate("/dashboard"),
-//                                         () => console.log('Error')
-//                                     )}>Login</button>
-//     </div>
-//   )
-// }
-
-// export default Login
+export default Login;

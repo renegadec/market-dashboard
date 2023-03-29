@@ -3,6 +3,7 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } 
 import axios from "axios";
 
 function UpLoadProduct({ isOpen, onClose }) {
+
     const [productName, setProductName] = useState('');
     const [description, setDescription] = useState('');
     const [fullDesc, setFullDesc] = useState('');
@@ -65,7 +66,15 @@ function UpLoadProduct({ isOpen, onClose }) {
     return (
         <Dialog open={isOpen} onClose={onClose}>
             <form onSubmit={handleFormSubmit}>
-                <DialogTitle>Upload a new product</DialogTitle>
+                <DialogTitle
+                    sx={{
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                        color: "green"
+                    }}
+                >
+                    Upload a new product
+                </DialogTitle>
                 <DialogContent>
                 <TextField
                     autoFocus
@@ -121,17 +130,28 @@ function UpLoadProduct({ isOpen, onClose }) {
                     />
                 <TextField
                     margin="dense"
-                    label="Image file"
+                    label="Image files"
                     type="file"
-                    multiple
+                    inputProps={{
+                        multiple: true
+                    }}
                     fullWidth
                     onChange={handleImageFileChange}
                 />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={onClose}>Cancel</Button>
-                    <Button type="submit" color="primary">
-                        Upload
+                    <Button onClick={onClose} variant="outlined" color="error">Cancel</Button>
+                    <Button 
+                        type="submit" 
+                        variant="contained" 
+                        color="success"
+                        sx={{
+                            fontSize: "14px",
+                            fontWeight: "bold",
+                            padding: "10px 20px"
+                        }}
+                    >
+                        Add product
                     </Button>
                 </DialogActions>
             </form>

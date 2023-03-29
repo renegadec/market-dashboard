@@ -11,6 +11,7 @@ import {
     useTheme,
     useMediaQuery,
 } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 import Header from "../../components/Header";
 import { useGetProductsQuery } from "../../state/api";
 
@@ -86,6 +87,7 @@ const Product =({
 }
 
 const Products = () => {
+    const theme = useTheme();
     const { data, isLoading } = useGetProductsQuery();
     const isNonMobile = useMediaQuery("(min-width: 1000px)");
 
@@ -101,9 +103,25 @@ const Products = () => {
 
     return (
         <Box m="1.5rem 2.5rem">
-            <Header title="PRODUCTS" subtitle="List of products." />
-            <Button variant="contained" onClick={handleUpLoadButton}>Add Product</Button>
-            {isOpen && <UpLoadProduct isOpen={isOpen}  onClose={handleUpLoadPopClose} />}
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+                <Header title="PRODUCTS" subtitle="List of products." />
+                <Button 
+                    variant="contained" 
+                    onClick={handleUpLoadButton} 
+                    sx={{
+                        backgroundColor: theme.palette.secondary.light,
+                        color: theme.palette.background.alt,
+                        fontSize: "14px",
+                        fontWeight: "bold",
+                        padding: "10px 20px"
+                    }}
+                >
+                    <AddIcon sx={{ mr: "10px" }} />
+                    Add New Product
+                </Button>
+                {isOpen && <UpLoadProduct isOpen={isOpen}  onClose={handleUpLoadPopClose} />}
+            </Box>
+            
 
             {data || !isLoading ? (
                 <Box
